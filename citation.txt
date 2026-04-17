@@ -1,0 +1,8 @@
+/***************************************************************************************
+*  REFERENCES
+*  Title: Claude
+*  Usage: Used for learning Godot concepts and GodotScript syntax. Also used to brainstorm
+*  various gameplay elements/implementation techniques. Not used to generate
+*  entire chunks of code that replace creative thinking.
+*
+***************************************************************************************/
