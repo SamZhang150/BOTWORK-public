@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://8hcslklen1p2"]
+
+[ext_resource type="Texture2D" uid="uid://chmigocd7yucq" path="res://assets/sprites/indicator.png" id="1_iujeb"]
+[ext_resource type="Script" uid="uid://bbg6j1ciybay3" path="res://scripts/InteractionIndicator.gd" id="1_mktbn"]
+
+[sub_resource type="Animation" id="Animation_mktbn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t4kas"]
+resource_name = "bob"
+length = 0.53333336
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, 16), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_plj4h"]
+_data = {
+&"RESET": SubResource("Animation_mktbn"),
+&"bob": SubResource("Animation_t4kas")
+}
+
+[node name="InteractionIndicator" type="Node2D" unique_id=715995239]
+script = ExtResource("1_mktbn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1071119095]
+texture = ExtResource("1_iujeb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1753511168]
+libraries/ = SubResource("AnimationLibrary_plj4h")
+autoplay = &"bob"

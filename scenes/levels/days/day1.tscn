@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://dppjifbuwtrpr"]
+
+[ext_resource type="Texture2D" uid="uid://byr8bbdgdxtqw" path="res://assets/sprites/lab1.png" id="1_7m711"]
+[ext_resource type="Script" uid="uid://ohc453hvrpnb" path="res://scenes/levels/days/day_1.gd" id="1_wks7l"]
+[ext_resource type="PackedScene" uid="uid://bkdtovtj061j5" path="res://scenes/entities/mailbox.tscn" id="2_wks7l"]
+[ext_resource type="PackedScene" uid="uid://cth1co4mppd1s" path="res://scenes/entities/player.tscn" id="3_7mxp7"]
+[ext_resource type="PackedScene" uid="uid://cbm6q2idbrfdh" path="res://scenes/entities/terminal.tscn" id="5_7mxp7"]
+[ext_resource type="PackedScene" uid="uid://dldogl3wqsedm" path="res://scenes/entities/standby.tscn" id="6_3ovbd"]
+[ext_resource type="Texture2D" uid="uid://cadx3emhsubia" path="res://assets/sprites/controls.png" id="7_i5c4n"]
+
+[sub_resource type="Animation" id="Animation_1hhy7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xbi0b"]
+resource_name = "controls"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333, 3.1999998, 3.5999997, 9.366667, 9.799999),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_28dhg"]
+_data = {
+&"RESET": SubResource("Animation_1hhy7"),
+&"controls": SubResource("Animation_xbi0b")
+}
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqjtg"]
+distance = -740.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lnu2h"]
+normal = Vector2(0, 1)
+distance = -200.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lbhrr"]
+normal = Vector2(-1, 0)
+distance = -1024.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iywne"]
+normal = Vector2(1, 0)
+distance = 260.65
+
+[node name="Game" type="Node2D" unique_id=251386434]
+script = ExtResource("1_wks7l")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1469280561]
+position = Vector2(960, 540)
+texture = ExtResource("1_7m711")
+
+[node name="Terminal" parent="." unique_id=568456287 instance=ExtResource("5_7mxp7")]
+position = Vector2(488, 97)
+
+[node name="Mailbox" parent="." unique_id=654515294 instance=ExtResource("2_wks7l")]
+position = Vector2(960, -134)
+
+[node name="Standby" parent="." unique_id=856668503 instance=ExtResource("6_3ovbd")]
+position = Vector2(1432, 234)
+
+[node name="CharacterBody2D" parent="." unique_id=1212954007 instance=ExtResource("3_7mxp7")]
+position = Vector2(958, 542)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D" unique_id=1832393424]
+libraries/ = SubResource("AnimationLibrary_28dhg")
+autoplay = &"controls"
+
+[node name="CanvasGroup" type="CanvasGroup" parent="CharacterBody2D" unique_id=2078291547]
+
+[node name="ColorRect" type="ColorRect" parent="CharacterBody2D/CanvasGroup" unique_id=2062761072]
+offset_left = -415.0
+offset_top = 150.0
+offset_right = 408.0
+offset_bottom = 440.0
+color = Color(0, 0, 0, 0.3372549)
+
+[node name="Controls" type="Sprite2D" parent="CharacterBody2D/CanvasGroup/ColorRect" unique_id=742768137]
+position = Vector2(461, 155)
+scale = Vector2(2, 2)
+texture = ExtResource("7_i5c4n")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1765237124]
+
+[node name="bottom" type="CollisionShape2D" parent="StaticBody2D" unique_id=828772377]
+position = Vector2(960, 526)
+shape = SubResource("WorldBoundaryShape2D_yqjtg")
+
+[node name="top" type="CollisionShape2D" parent="StaticBody2D" unique_id=1532401520]
+position = Vector2(0, 10)
+shape = SubResource("WorldBoundaryShape2D_lnu2h")
+
+[node name="right" type="CollisionShape2D" parent="StaticBody2D" unique_id=1302667407]
+position = Vector2(594, 162)
+shape = SubResource("WorldBoundaryShape2D_lbhrr")
+
+[node name="left" type="CollisionShape2D" parent="StaticBody2D" unique_id=1287552006]
+position = Vector2(40, 36)
+shape = SubResource("WorldBoundaryShape2D_iywne")
+
+[node name="Timer" type="Timer" parent="." unique_id=438220267]
+wait_time = 10.0
+one_shot = true
+autostart = true

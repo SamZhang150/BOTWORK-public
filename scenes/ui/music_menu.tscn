@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://cgcpc60obldpj"]
+
+[ext_resource type="Script" uid="uid://bo3owapq8g2qn" path="res://scripts/MusicMenu.gd" id="1_2g8nc"]
+[ext_resource type="Script" uid="uid://dx30qf8rtoqf7" path="res://scripts/MusicUI.gd" id="2_2g8nc"]
+[ext_resource type="Texture2D" uid="uid://3xjg80kyme2n" path="res://assets/sprites/terminaloverlay.png" id="3_i7aya"]
+[ext_resource type="AudioStream" uid="uid://wry8rjgnhboq" path="res://assets/audio/terminal.wav" id="4_2ov2s"]
+
+[node name="music_menu" type="CanvasLayer" unique_id=501260241]
+script = ExtResource("1_2g8nc")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1306899795]
+offset_left = 84.0
+offset_top = 192.0
+offset_right = 996.0
+offset_bottom = 888.0
+color = Color(0.18896914, 0.18896914, 0.18896914, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=2110604923]
+offset_left = 102.0
+offset_top = 210.0
+offset_right = 978.0
+offset_bottom = 870.0
+color = Color(0.72673184, 0.7267317, 0.7267317, 1)
+
+[node name="Panel" type="Panel" parent="." unique_id=1166229976]
+offset_left = 108.0
+offset_top = 216.0
+offset_right = 972.0
+offset_bottom = 864.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Panel" unique_id=1698398541]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Panel/SubViewportContainer" unique_id=714692002]
+own_world_3d = true
+handle_input_locally = false
+gui_embed_subwindows = true
+size = Vector2i(864, 648)
+render_target_update_mode = 4
+script = ExtResource("2_2g8nc")
+
+[node name="Node2D" type="Node2D" parent="Panel/SubViewportContainer/SubViewport" unique_id=1062624616]
+
+[node name="ColorRect" type="ColorRect" parent="Panel/SubViewportContainer/SubViewport/Node2D" unique_id=1167490287]
+modulate = Color(0.2019814, 0.43476385, 1, 1)
+offset_right = 864.0
+offset_bottom = 648.0
+color = Color(0.10551036, 0.17546284, 0.31491616, 1)
+
+[node name="CrunchZone" type="ColorRect" parent="Panel/SubViewportContainer/SubViewport/Node2D" unique_id=1557366892]
+visible = false
+offset_left = 400.0
+offset_top = 128.0
+offset_right = 464.0
+offset_bottom = 488.0
+color = Color(0.46691406, 0.52708656, 1, 1)
+
+[node name="NumberSpawner" type="Node2D" parent="Panel/SubViewportContainer/SubViewport/Node2D" unique_id=1783843569]
+
+[node name="SpawnTimer" type="Timer" parent="Panel/SubViewportContainer/SubViewport/Node2D" unique_id=169988336]
+process_mode = 3
+wait_time = 1.5
+
+[node name="TextureRect" type="TextureRect" parent="Panel/SubViewportContainer/SubViewport/Node2D" unique_id=1701051340]
+modulate = Color(1, 1, 1, 0.43529412)
+self_modulate = Color(1, 1, 1, 0.63529414)
+offset_right = 864.0
+offset_bottom = 648.0
+texture = ExtResource("3_i7aya")
+
+[node name="QuotaLabel" type="Label" parent="Panel/SubViewportContainer/SubViewport" unique_id=2129495936]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -180.0
+offset_top = 24.0
+offset_right = -140.0
+offset_bottom = 47.0
+grow_horizontal = 0
+scale = Vector2(1.6, 1.6)
+
+[node name="TerminalOutput" type="RichTextLabel" parent="Panel/SubViewportContainer/SubViewport" unique_id=1215637811]
+modulate = Color(1, 1, 1, 0.62352943)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -24.0
+offset_right = -272.0
+offset_bottom = -322.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+bbcode_enabled = true
+scroll_following = true
+
+[node name="InputRow" type="HBoxContainer" parent="Panel/SubViewportContainer/SubViewport" unique_id=945136482]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 82.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(-24, 64)
+
+[node name="Prompt" type="Label" parent="Panel/SubViewportContainer/SubViewport/InputRow" unique_id=2078238134]
+layout_mode = 2
+text = ">"
+
+[node name="InputField" type="LineEdit" parent="Panel/SubViewportContainer/SubViewport/InputRow" unique_id=487443491]
+layout_mode = 2
+max_length = 6
+editable = false
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+
+[node name="BeepPlayer" type="AudioStreamPlayer2D" parent="." unique_id=304086279]
+stream = ExtResource("4_2ov2s")
+volume_db = -16.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=108798787]
+process_mode = 3
+position = Vector2(-1, 0)
+max_distance = 4096.0

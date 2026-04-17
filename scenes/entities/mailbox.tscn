@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://bkdtovtj061j5"]
+
+[ext_resource type="Script" uid="uid://y40ts2tonl6y" path="res://scripts/Mailbox.gd" id="1_duv4v"]
+[ext_resource type="Texture2D" uid="uid://bd3ewkjuo754o" path="res://assets/sprites/mailbox.png" id="2_80nar"]
+[ext_resource type="AudioStream" uid="uid://crgsyr05stik7" path="res://assets/audio/mail.wav" id="3_jdte6"]
+[ext_resource type="PackedScene" uid="uid://8hcslklen1p2" path="res://scenes/entities/interaction_indicator.tscn" id="4_drta0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_276df"]
+atlas = ExtResource("2_80nar")
+region = Rect2(0, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_452jb"]
+atlas = ExtResource("2_80nar")
+region = Rect2(1200, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xb57f"]
+atlas = ExtResource("2_80nar")
+region = Rect2(240, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p65c8"]
+atlas = ExtResource("2_80nar")
+region = Rect2(480, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jpdh"]
+atlas = ExtResource("2_80nar")
+region = Rect2(720, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0r8m2"]
+atlas = ExtResource("2_80nar")
+region = Rect2(960, 0, 240, 240)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4x2d2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_276df")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_452jb")
+}],
+"loop": true,
+"name": &"full",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xb57f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p65c8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jpdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0r8m2")
+}],
+"loop": false,
+"name": &"printing",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4d65t"]
+
+[node name="Mailbox" type="Area2D" unique_id=654515294]
+script = ExtResource("1_duv4v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=23039104]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_4x2d2")
+animation = &"printing"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=903686707]
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_4d65t")
+
+[node name="PrintPlayer" type="AudioStreamPlayer2D" parent="." unique_id=2137092703]
+stream = ExtResource("3_jdte6")
+
+[node name="InteractionIndicator" parent="." unique_id=715995239 instance=ExtResource("4_drta0")]
+position = Vector2(0, -72)

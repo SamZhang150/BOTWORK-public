@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://d2cmth8jiem4a"]
+
+[ext_resource type="Script" uid="uid://dwkhuw2ndv4wd" path="res://scenes/levels/dreams/dream_5.gd" id="1_jh7f5"]
+[ext_resource type="Texture2D" uid="uid://cb1xkwuy16nlg" path="res://assets/sprites/grass.png" id="2_ap1fc"]
+[ext_resource type="Texture2D" uid="uid://3xjg80kyme2n" path="res://assets/sprites/terminaloverlay.png" id="3_w5oym"]
+[ext_resource type="PackedScene" uid="uid://bkdtovtj061j5" path="res://scenes/entities/mailbox.tscn" id="5_ljtn6"]
+[ext_resource type="PackedScene" uid="uid://cth1co4mppd1s" path="res://scenes/entities/player.tscn" id="6_md66i"]
+[ext_resource type="Texture2D" uid="uid://cn3jl0vk8gxg1" path="res://assets/sprites/alps.png" id="7_kwvf5"]
+[ext_resource type="PackedScene" uid="uid://dfakqcko4l6sp" path="res://scenes/entities/soccer_ball.tscn" id="8_x2fmq"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6oaxm"]
+distance = -740.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_blqm8"]
+normal = Vector2(0, 1)
+distance = -200.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e8rew"]
+normal = Vector2(-1, 0)
+distance = -1024.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_whi0a"]
+normal = Vector2(1, 0)
+distance = 260.65
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i32d0"]
+friction = 0.5
+bounce = 1.0
+
+[node name="Dream5" type="Node2D" unique_id=791498151]
+script = ExtResource("1_jh7f5")
+
+[node name="TextureRect4" type="TextureRect" parent="." unique_id=333560787]
+offset_left = -2100.0
+offset_top = -128.0
+offset_right = 969.0
+offset_bottom = 1589.5
+scale = Vector2(2, 2)
+texture = ExtResource("2_ap1fc")
+stretch_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1477532064]
+modulate = Color(0.18039216, 0.4117647, 0.16078432, 0.13333334)
+offset_left = -2100.0
+offset_top = -128.0
+offset_right = 969.0
+offset_bottom = 892.5
+scale = Vector2(2, 2)
+texture = ExtResource("3_w5oym")
+stretch_mode = 1
+
+[node name="Mailbox" parent="." unique_id=654515294 instance=ExtResource("5_ljtn6")]
+position = Vector2(960, -134)
+
+[node name="CharacterBody2D" parent="." unique_id=1212954007 instance=ExtResource("6_md66i")]
+position = Vector2(967, 464)
+
+[node name="TextureRect2" type="TextureRect" parent="CharacterBody2D" unique_id=2110215962]
+modulate = Color(0.8668296, 0.86682963, 0.86682963, 0.8627451)
+z_index = -13
+offset_left = -981.0
+offset_top = -1144.0
+offset_right = 958.0
+offset_bottom = 199.0
+texture = ExtResource("7_kwvf5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=389603523]
+collision_layer = 3
+
+[node name="bottom" type="CollisionShape2D" parent="StaticBody2D" unique_id=1497628490]
+position = Vector2(960, 526)
+shape = SubResource("WorldBoundaryShape2D_6oaxm")
+
+[node name="top" type="CollisionShape2D" parent="StaticBody2D" unique_id=216987688]
+position = Vector2(0, -30)
+shape = SubResource("WorldBoundaryShape2D_blqm8")
+
+[node name="right" type="CollisionShape2D" parent="StaticBody2D" unique_id=1548786393]
+position = Vector2(1000, 162)
+shape = SubResource("WorldBoundaryShape2D_e8rew")
+
+[node name="left" type="CollisionShape2D" parent="StaticBody2D" unique_id=2098408418]
+position = Vector2(-360, 36)
+shape = SubResource("WorldBoundaryShape2D_whi0a")
+
+[node name="SoccerBall" parent="." unique_id=488820172 instance=ExtResource("8_x2fmq")]
+position = Vector2(1416, 759)
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_i32d0")
+
+[node name="SoccerBall2" parent="." unique_id=1094388326 instance=ExtResource("8_x2fmq")]
+position = Vector2(1129, 813)
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_i32d0")
+
+[node name="SoccerBall3" parent="." unique_id=1870577618 instance=ExtResource("8_x2fmq")]
+position = Vector2(1276, 536)
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_i32d0")

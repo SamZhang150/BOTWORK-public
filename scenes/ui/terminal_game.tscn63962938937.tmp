@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://davtwjukffbdo"]
+
+[ext_resource type="Script" uid="uid://bxj0aorake0m8" path="res://scripts/TerminalGame.gd" id="1_78kyd"]
+[ext_resource type="Script" uid="uid://dptuqgf4312rg" path="res://scripts/minigame/node_2d.gd" id="2_ylkfp"]
+
+[node name="TerminalGame" type="CanvasLayer" unique_id=501260241]
+script = ExtResource("1_78kyd")
+
+[node name="Panel" type="Panel" parent="." unique_id=1166229976]
+offset_left = 108.0
+offset_top = 216.0
+offset_right = 972.0
+offset_bottom = 864.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Panel" unique_id=1698398541]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Panel/SubViewportContainer" unique_id=714692002]
+own_world_3d = true
+gui_embed_subwindows = true
+size = Vector2i(864, 648)
+render_target_update_mode = 4
+script = ExtResource("2_ylkfp")
+
+[node name="Node2D" type="Node2D" parent="Panel/SubViewportContainer/SubViewport" unique_id=1062624616]
+
+[node name="ColorRect" type="ColorRect" parent="Panel/SubViewportContainer/SubViewport/Node2D" unique_id=1167490287]
+offset_right = 864.0
+offset_bottom = 648.0
+color = Color(0.10551036, 0.17546284, 0.31491616, 1)
+
+[node name="CrunchZone" type="ColorRect" parent="Panel/SubViewportContainer/SubViewport/Node2D" unique_id=1557366892]
+offset_left = 400.0
+offset_top = 32.0
+offset_right = 464.0
+offset_bottom = 512.0
+color = Color(0.46691406, 0.52708656, 1, 1)
+
+[node name="NumberSpawner" type="Node2D" parent="Panel/SubViewportContainer/SubViewport/Node2D" unique_id=1783843569]
+
+[node name="Timer" type="Timer" parent="Panel/SubViewportContainer/SubViewport/Node2D" unique_id=169988336]
+wait_time = 2.0
+
+[node name="QuotaLabel" type="Label" parent="Panel/SubViewportContainer/SubViewport" unique_id=2129495936]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+
+[node name="TerminalOutput" type="RichTextLabel" parent="Panel/SubViewportContainer/SubViewport" unique_id=1215637811]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+scroll_following = true
+
+[node name="InputRow" type="HBoxContainer" parent="Panel/SubViewportContainer/SubViewport" unique_id=945136482]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 82.0
+grow_vertical = 0
+
+[node name="Prompt" type="Label" parent="Panel/SubViewportContainer/SubViewport/InputRow" unique_id=2078238134]
+layout_mode = 2
+text = ">"
+
+[node name="InputField" type="LineEdit" parent="Panel/SubViewportContainer/SubViewport/InputRow" unique_id=487443491]
+process_mode = 4
+layout_mode = 2
+max_length = 10
+keep_editing_on_text_submit = true
+expand_to_text_length = true
+
+[connection signal="timeout" from="Panel/SubViewportContainer/SubViewport/Node2D/Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dfakqcko4l6sp"]
+
+[ext_resource type="Script" uid="uid://cra81g6hi1eu0" path="res://scripts/SoccerBall.gd" id="1_s3vih"]
+[ext_resource type="Texture2D" uid="uid://dxwq818hluefw" path="res://assets/sprites/ball.png" id="2_rcxhg"]
+[ext_resource type="AudioStream" uid="uid://c0f2arulfk55o" path="res://assets/audio/kick.wav" id="3_5wndj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8oglh"]
+
+[node name="SoccerBall" type="RigidBody2D" unique_id=488820172]
+gravity_scale = 0.0
+linear_damp = 1.5
+angular_damp = 1.5
+script = ExtResource("1_s3vih")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2050083785]
+texture = ExtResource("2_rcxhg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1856707046]
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_8oglh")
+
+[node name="KickSound" type="AudioStreamPlayer2D" parent="." unique_id=1936736635]
+stream = ExtResource("3_5wndj")
+
+[node name="Timer" type="Timer" parent="." unique_id=332862063]
+wait_time = 0.1
+one_shot = true

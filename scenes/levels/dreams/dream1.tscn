@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://d0rhtwts44eky"]
+
+[ext_resource type="Script" uid="uid://bax0hw2oac8ud" path="res://scenes/levels/dreams/dream_1.gd" id="1_ohcp1"]
+[ext_resource type="Texture2D" uid="uid://3xjg80kyme2n" path="res://assets/sprites/terminaloverlay.png" id="2_wk07j"]
+[ext_resource type="Texture2D" uid="uid://b4hu6pq56ev7r" path="res://assets/sprites/numbers.png" id="3_n1avv"]
+[ext_resource type="PackedScene" uid="uid://bkdtovtj061j5" path="res://scenes/entities/mailbox.tscn" id="4_6xi8n"]
+[ext_resource type="PackedScene" uid="uid://cth1co4mppd1s" path="res://scenes/entities/player.tscn" id="6_eho8i"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6oaxm"]
+distance = -740.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_blqm8"]
+normal = Vector2(0, 1)
+distance = -200.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e8rew"]
+normal = Vector2(-1, 0)
+distance = -1024.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_whi0a"]
+normal = Vector2(1, 0)
+distance = 260.65
+
+[node name="Dream1" type="Node2D" unique_id=791498151]
+script = ExtResource("1_ohcp1")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=2110215962]
+modulate = Color(0.8668296, 0.86682963, 0.86682963, 0.8627451)
+offset_left = -1811.0
+offset_top = -1868.0
+offset_right = 962.0
+offset_bottom = 386.5
+scale = Vector2(2, 2)
+texture = ExtResource("2_wk07j")
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2096704620]
+offset_left = 306.0
+offset_top = -188.0
+offset_right = 975.0
+offset_bottom = 532.5
+scale = Vector2(2, 2)
+texture = ExtResource("2_wk07j")
+stretch_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=531201322]
+modulate = Color(1, 1, 1, 0.8627451)
+offset_left = -1811.0
+offset_top = -1868.0
+offset_right = 962.0
+offset_bottom = 386.5
+scale = Vector2(2, 2)
+texture = ExtResource("3_n1avv")
+stretch_mode = 1
+
+[node name="Mailbox" parent="." unique_id=654515294 instance=ExtResource("4_6xi8n")]
+position = Vector2(960, -134)
+
+[node name="CharacterBody2D" parent="." unique_id=1212954007 instance=ExtResource("6_eho8i")]
+position = Vector2(967, 464)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=389603523]
+
+[node name="bottom" type="CollisionShape2D" parent="StaticBody2D" unique_id=1497628490]
+position = Vector2(960, 526)
+shape = SubResource("WorldBoundaryShape2D_6oaxm")
+
+[node name="top" type="CollisionShape2D" parent="StaticBody2D" unique_id=216987688]
+position = Vector2(0, 10)
+shape = SubResource("WorldBoundaryShape2D_blqm8")
+
+[node name="right" type="CollisionShape2D" parent="StaticBody2D" unique_id=1548786393]
+position = Vector2(594, 162)
+shape = SubResource("WorldBoundaryShape2D_e8rew")
+
+[node name="left" type="CollisionShape2D" parent="StaticBody2D" unique_id=2098408418]
+position = Vector2(40, 36)
+shape = SubResource("WorldBoundaryShape2D_whi0a")

@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://ub3sfqxekd05"]
+
+[ext_resource type="Texture2D" uid="uid://bnbpyie5qh8tc" path="res://assets/sprites/end1.png" id="1_ftwiq"]
+[ext_resource type="Script" uid="uid://cgvtog12a706v" path="res://scenes/levels/ending.gd" id="1_wptvf"]
+[ext_resource type="AudioStream" uid="uid://bd3xp5qs1xekj" path="res://assets/audio/end.wav" id="2_vsvsc"]
+[ext_resource type="Texture2D" uid="uid://c6nu5a2onbyfr" path="res://assets/sprites/floor.png" id="3_ahs20"]
+
+[sub_resource type="Animation" id="Animation_vsvsc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ahs20"]
+resource_name = "zoom"
+length = 97.13333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.766667, 14.1, 24.866667, 37.4182, 59.233334, 95.85211),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 80), Vector2(70, 70), Vector2(30, 30), Vector2(15, 15), Vector2(10, 10), Vector2(5, 5), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6333332, 13.266666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4.766667, 13.566667, 37.4182, 59.233334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(300, 72.382), Vector2(450, 250), Vector2(540, 540)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.7666669, 91.166664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wptvf"]
+_data = {
+&"RESET": SubResource("Animation_vsvsc"),
+&"zoom": SubResource("Animation_ahs20")
+}
+
+[node name="Ending" type="Node2D" unique_id=834014449]
+script = ExtResource("1_wptvf")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1286047092]
+offset_left = -1099.3143
+offset_top = -1086.1571
+offset_right = 11291.236
+offset_bottom = 11677.074
+scale = Vector2(0.1, 0.1)
+pivot_offset = Vector2(540, 540)
+texture = ExtResource("3_ahs20")
+stretch_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=330388448]
+texture_filter = 1
+position = Vector2(-531.07697, -516.6676)
+texture = ExtResource("1_ftwiq")
+offset = Vector2(540, 540)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1169876565]
+libraries/ = SubResource("AnimationLibrary_wptvf")
+autoplay = &"zoom"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=501629528]
+stream = ExtResource("2_vsvsc")
+autoplay = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=185474686]
+offset_left = -588.73065
+offset_top = -582.5981
+offset_right = -548.73065
+offset_bottom = -542.5981
+scale = Vector2(30, 30)
+color = Color(0, 0, 0, 1)
